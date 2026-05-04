@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAWAAK — Some things only grow more beautiful with time</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tenor+Sans&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amber: #C8870A;
+  --charcoal: #131110;
+  --charcoal-warm: #1E1A14;
+  --ivory: #F0E6CC;
+  --ivory-dim: #C8B99A;
+  --ivory-faint: #8A7A62;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--charcoal);
+  color: var(--ivory);
+  font-family: 'Tenor Sans', sans-serif;
+  overflow-x: hidden;
+}
+.announcement {
+  background: rgba(200,135,10,0.1);
+  border-bottom: 1px solid rgba(200,135,10,0.2);
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: var(--ivory-dim);
+  text-transform: uppercase;
+}
+.announcement span { color: var(--amber); }
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(19,17,16,0.97) 0%, transparent 100%);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: var(--amber);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--ivory-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--amber); }
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 3rem;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 75% 50%, rgba(200,135,10,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 15% 80%, rgba(26,46,26,0.35) 0%, transparent 55%),
+    var(--charcoal);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 5rem;
+}
+.hero-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  display: block;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4.5rem, 13vw, 10rem);
+  font-weight: 300;
+  line-height: 0.88;
+  color: var(--ivory);
+  margin-bottom: 3rem;
+}
+.hero-title span { color: var(--amber); font-style: italic; }
+.hero-tagline {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-style: italic;
+  color: var(--ivory-dim);
+  max-width: 420px;
+  line-height: 1.75;
+  margin-bottom: 3.5rem;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--amber);
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  transition: gap 0.3s;
+}
+.hero-cta:hover { gap: 1.5rem; }
+.hero-cta-line { width: 40px; height: 1px; background: var(--amber); transition: width 0.3s; }
+.hero-cta:hover .hero-cta-line { width: 55px; }
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+}
+.hero-scroll span { font-size: 0.56rem; letter-spacing: 0.3em; color: var(--ivory-faint); text-transform: uppercase; }
+.scroll-line {
+  width: 1px; height: 45px;
+  background: linear-gradient(to bottom, var(--amber), transparent);
+  animation: scrollDrop 2.2s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.full-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,135,10,0.25), transparent);
+  margin: 0 3rem;
+}
+.section-label {
+  font-size: 0.6rem; letter-spacing: 0.4em; color: var(--amber);
+  text-transform: uppercase; margin-bottom: 1.8rem; display: block;
+}
+.amber-rule { width: 40px; height: 1px; background: var(--amber); margin: 2rem 0; }
+.philosophy {
+  padding: 8rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+.philosophy-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; line-height: 1.2; color: var(--ivory); margin-bottom: 2rem;
+}
+.philosophy-title em { color: var(--amber); font-style: italic; }
+.philosophy-text { font-family: 'EB Garamond', serif; font-size: 1.05rem; line-height: 1.95; color: var(--ivory-dim); }
+.philosophy-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.p-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(200,135,10,0.14);
+  padding: 1.8rem 1.6rem;
+  transition: background 0.3s, border-color 0.3s;
+}
+.p-card:hover { background: rgba(200,135,10,0.04); border-color: rgba(200,135,10,0.3); }
+.p-card:nth-child(2) { margin-top: 1.5rem; }
+.p-card:nth-child(4) { margin-top: -1.5rem; }
+.p-card-icon { color: var(--amber); font-size: 1.2rem; margin-bottom: 1rem; display: block; }
+.p-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--ivory); margin-bottom: 0.6rem; }
+.p-card-text { font-size: 0.8rem; line-height: 1.7; color: var(--ivory-faint); }
+.collection { padding: 8rem 3rem; max-width: 1100px; margin: 0 auto; }
+.collection-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 1.5rem; }
+.collection-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.1; color: var(--ivory); }
+.collection-title em { color: var(--amber); font-style: italic; }
+.view-link { color: var(--amber); text-decoration: none; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; display: flex; align-items: center; gap: 0.8rem; white-space: nowrap; }
+.view-link-line { width: 28px; height: 1px; background: var(--amber); }
+.collection-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 1.2rem; align-items: start; }
+.c-item:nth-child(2) { margin-top: 3rem; }
+.c-item:nth-child(3) { margin-top: 1rem; }
+.c-item-inner { background: var(--charcoal-warm); border: 1px solid rgba(200,135,10,0.1); overflow: hidden; transition: border-color 0.4s; }
+.c-item:hover .c-item-inner { border-color: rgba(200,135,10,0.35); }
+.c-placeholder {
+  width: 100%; aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; transition: transform 0.7s ease;
+}
+.c-item:hover .c-placeholder { transform: scale(1.03); }
+.c-placeholder-1 { background: radial-gradient(ellipse 65% 45% at 30% 40%, rgba(200,135,10,0.18) 0%, transparent 60%), linear-gradient(135deg, #1C1614 0%, #2A1F10 60%, #181612 100%); }
+.c-placeholder-2 { background: radial-gradient(ellipse 55% 55% at 60% 35%, rgba(26,46,26,0.55) 0%, transparent 65%), radial-gradient(ellipse 40% 40% at 40% 70%, rgba(200,135,10,0.1) 0%, transparent 55%), linear-gradient(160deg, #111410 0%, #1C2018 100%); }
+.c-placeholder-3 { background: radial-gradient(ellipse 75% 55% at 50% 50%, rgba(200,135,10,0.13) 0%, transparent 65%), linear-gradient(180deg, #1A1510 0%, #201A12 100%); }
+.c-placeholder-icon { font-size: 2.5rem; color: var(--amber); opacity: 0.15; }
+.c-tag { position: absolute; top: 1.2rem; right: 1.2rem; background: rgba(200,135,10,0.12); border: 1px solid rgba(200,135,10,0.28); padding: 0.35rem 0.7rem; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--amber); text-transform: uppercase; }
+.c-info { padding: 1.3rem 1.4rem 1.8rem; }
+.c-category { font-size: 0.55rem; letter-spacing: 0.28em; color: var(--amber); text-transform: uppercase; margin-bottom: 0.5rem; }
+.c-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--ivory); margin-bottom: 0.35rem; }
+.c-story { font-family: 'EB Garamond', serif; font-size: 0.88rem; color: var(--ivory-faint); font-style: italic; line-height: 1.6; }
+.trust { background: var(--charcoal-warm); padding: 8rem 3rem; position: relative; }
+.trust::before, .trust::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(200,135,10,0.22), transparent); }
+.trust::before { top: 0; } .trust::after { bottom: 0; }
+.trust-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+.trust-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; color: var(--ivory); margin-bottom: 1.2rem; }
+.trust-subtitle { font-family: 'EB Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--ivory-dim); max-width: 560px; margin: 0 auto 4rem; line-height: 1.75; }
+.trust-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid rgba(200,135,10,0.14); }
+.t-pillar { padding: 3rem 2.2rem; border-right: 1px solid rgba(200,135,10,0.14); transition: background 0.3s; text-align: left; }
+.t-pillar:last-child { border-right: none; }
+.t-pillar:hover { background: rgba(200,135,10,0.03); }
+.t-num { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; color: var(--amber); letter-spacing: 0.3em; display: block; margin-bottom: 1.2rem; }
+.t-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--ivory); margin-bottom: 1rem; }
+.t-text { font-family: 'EB Garamond', serif; font-size: 0.92rem; line-height: 1.85; color: var(--ivory-faint); }
+.contact { padding: 8rem 3rem; max-width: 860px; margin: 0 auto; text-align: center; }
+.contact-eyebrow { font-size: 0.6rem; letter-spacing: 0.4em; color: var(--amber); text-transform: uppercase; margin-bottom: 1.8rem; display: block; }
+.contact-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--ivory); line-height: 1.2; margin-bottom: 1.5rem; }
+.contact-title em { color: var(--amber); font-style: italic; }
+.contact-text { font-family: 'EB Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--ivory-dim); line-height: 1.8; margin-bottom: 3.5rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; text-align: left; margin-bottom: 1.2rem; }
+.form-grid .full { grid-column: 1/-1; }
+.form-field { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-field label { font-size: 0.58rem; letter-spacing: 0.22em; color: var(--ivory-faint); text-transform: uppercase; }
+.form-field input, .form-field textarea, .form-field select { background: transparent; border: none; border-bottom: 1px solid rgba(200,135,10,0.22); padding: 0.7rem 0; color: var(--ivory); font-family: 'EB Garamond', serif; font-size: 1rem; outline: none; transition: border-color 0.3s; -webkit-appearance: none; }
+.form-field select option { background: var(--charcoal); color: var(--ivory); }
+.form-field input:focus, .form-field textarea:focus, .form-field select:focus { border-bottom-color: var(--amber); }
+.form-field textarea { resize: none; height: 90px; }
+.form-submit { margin-top: 2rem; background: transparent; border: 1px solid rgba(200,135,10,0.38); color: var(--amber); font-family: 'Tenor Sans', sans-serif; font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 1.1rem 3rem; cursor: pointer; transition: all 0.35s ease; -webkit-appearance: none; }
+.form-submit:hover { background: var(--amber); color: var(--charcoal); border-color: var(--amber); }
+footer { padding: 3rem; border-top: 1px solid rgba(200,135,10,0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; letter-spacing: 0.3em; color: var(--amber); }
+.footer-tagline { font-family: 'EB Garamond', serif; font-size: 0.88rem; font-style: italic; color: var(--ivory-faint); }
+.footer-initials { display: flex; gap: 0.8rem; }
+.f-initial { width: 30px; height: 30px; border: 1px solid rgba(200,135,10,0.28); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--amber); transition: all 0.3s; }
+.f-initial:hover { background: rgba(200,135,10,0.1); border-color: var(--amber); }
+
+/* WhatsApp floating button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
+.whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+.whatsapp-float-tooltip {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 5rem;
+  background: rgba(19,17,16,0.95);
+  border: 1px solid rgba(200,135,10,0.3);
+  color: var(--ivory);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 998;
+}
+.whatsapp-float:hover + .whatsapp-float-tooltip { opacity: 1; }
+
+/* WhatsApp inline button */
+.whatsapp-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: transparent;
+  border: 1px solid rgba(37,211,102,0.4);
+  color: #25D366;
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.35s ease;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.whatsapp-inline:hover { background: #25D366; color: white; border-color: #25D366; }
+.whatsapp-inline svg { width: 16px; height: 16px; fill: currentColor; }
+.contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; margin-top: 0; }
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .nav-links a { font-size: 0.58rem; }
+  .hero { padding: 0 1.5rem; }
+  .hero-content { padding-top: 9rem; }
+  .full-divider { margin: 0 1.5rem; }
+  .philosophy { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+  .philosophy-cards { grid-template-columns: 1fr 1fr; }
+  .p-card:nth-child(2), .p-card:nth-child(4) { margin-top: 0; }
+  .collection { padding: 5rem 1.5rem; }
+  .collection-grid { grid-template-columns: 1fr; }
+  .c-item:nth-child(2), .c-item:nth-child(3) { margin-top: 0; }
+  .c-placeholder { aspect-ratio: 4/3; }
+  .trust { padding: 5rem 1.5rem; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .t-pillar { border-right: none; border-bottom: 1px solid rgba(200,135,10,0.14); }
+  .t-pillar:last-child { border-bottom: none; }
+  .contact { padding: 5rem 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="announcement">
+  Launching Soon — <span>Register your interest below</span>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">RAWAAK</a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#contact">Enquire</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Est. 2025 &nbsp;·&nbsp; Delhi, India &nbsp;·&nbsp; By Appointment</span>
+    <h1 class="hero-title">RAW<span>AAK</span></h1>
+    <p class="hero-tagline">Some things only grow more beautiful with time.</p>
+    <a href="#collection" class="hero-cta">
+      <span class="hero-cta-line"></span>
+      Explore the Collection
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="philosophy" id="philosophy">
+  <div>
+    <span class="section-label">Our Philosophy</span>
+    <h2 class="philosophy-title">We don't sell objects.<br>We find them <em>homes.</em></h2>
+    <div class="amber-rule"></div>
+    <p class="philosophy-text">
+      At RAWAAK, we believe that the most extraordinary things in the world already exist. They are sitting somewhere, waiting. They carry the warmth of hands that held them, the memory of rooms they've occupied, the quiet dignity of time well spent.<br><br>
+      Our work is to find them, understand them, and place them with someone who will love them as much as their last keeper did.
+    </p>
+  </div>
+  <div class="philosophy-cards">
+    <div class="p-card">
+      <span class="p-card-icon">◈</span>
+      <h3 class="p-card-title">Authenticity First</h3>
+      <p class="p-card-text">Every piece is verified before it is listed. No compromises, ever.</p>
+    </div>
+    <div class="p-card">
+      <span class="p-card-icon">◇</span>
+      <h3 class="p-card-title">Story Before Price</h3>
+      <p class="p-card-text">Where it came from matters as much as what it is. We document everything.</p>
+    </div>
+    <div class="p-card">
+      <span class="p-card-icon">◉</span>
+      <h3 class="p-card-title">Radical Trust</h3>
+      <p class="p-card-text">In a market built on suspicion, we operate with complete transparency.</p>
+    </div>
+    <div class="p-card">
+      <span class="p-card-icon">◌</span>
+      <h3 class="p-card-title">Quality Over Quantity</h3>
+      <p class="p-card-text">Very few extraordinary things. Never a hundred mediocre ones.</p>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="collection" id="collection">
+  <div class="collection-header">
+    <h2 class="collection-title">Objects of<br><em>Memory</em></h2>
+    <a href="#contact" class="view-link">Request Early Access <span class="view-link-line"></span></a>
+  </div>
+  <div class="collection-grid">
+    <div class="c-item">
+      <div class="c-item-inner">
+        <div class="c-placeholder c-placeholder-1">
+          <span class="c-placeholder-icon">◈</span>
+          <div class="c-tag">Coming Soon</div>
+        </div>
+        <div class="c-info">
+          <p class="c-category">Horology</p>
+          <h3 class="c-name">Heritage Timepieces</h3>
+          <p class="c-story">Every watch is a biography on the wrist — decades compressed into a dial.</p>
+        </div>
+      </div>
+    </div>
+    <div class="c-item">
+      <div class="c-item-inner">
+        <div class="c-placeholder c-placeholder-2">
+          <span class="c-placeholder-icon">◇</span>
+          <div class="c-tag">Coming Soon</div>
+        </div>
+        <div class="c-info">
+          <p class="c-category">Fine Leather</p>
+          <h3 class="c-name">Rare Leather Goods</h3>
+          <p class="c-story">Patina earned honestly, over years of careful use by someone who knew quality.</p>
+        </div>
+      </div>
+    </div>
+    <div class="c-item">
+      <div class="c-item-inner">
+        <div class="c-placeholder c-placeholder-3">
+          <span class="c-placeholder-icon">◉</span>
+          <div class="c-tag">Coming Soon</div>
+        </div>
+        <div class="c-info">
+          <p class="c-category">Collectibles</p>
+          <h3 class="c-name">Curated Objects</h3>
+          <p class="c-story">Rare things that carry the energy of the hands and eras that shaped them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<section class="trust">
+  <div class="trust-inner">
+    <span class="section-label">The RAWAAK Promise</span>
+    <h2 class="trust-title">Built on trust.<br>Measured in years.</h2>
+    <p class="trust-subtitle">In a market where provenance is guessed and condition overstated, we do something radical — we tell the truth.</p>
+    <div class="trust-grid">
+      <div class="t-pillar">
+        <span class="t-num">I</span>
+        <h3 class="t-title">Verified Always</h3>
+        <p class="t-text">Every piece is authenticated before listing. We tell you what we know and what we don't. No object leaves us with an uncertain story.</p>
+      </div>
+      <div class="t-pillar">
+        <span class="t-num">II</span>
+        <h3 class="t-title">Priced Fairly</h3>
+        <p class="t-text">Our pricing reflects the true market and the object's honest condition. We inflate nothing. Trust isn't built by making a sale — it's built by making the right one.</p>
+      </div>
+      <div class="t-pillar">
+        <span class="t-num">III</span>
+        <h3 class="t-title">Yours to Return</h3>
+        <p class="t-text">If what you receive does not match what we described, we will take it back. No conversation needed. This is what trust looks like in practice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <span class="contact-eyebrow">Register Your Interest</span>
+  <h2 class="contact-title">Begin a<br><em>conversation.</em></h2>
+  <p class="contact-text">Whether you have a piece to consign, something you're searching for, or simply want to be notified when we launch — we would love to hear from you.</p>
+
+  <form action="https://formsubmit.co/rawaak.official@gmail.com" method="POST" class="form-grid">
+    <!-- Formsubmit config -->
+    <input type="hidden" name="_subject" value="New RAWAAK Enquiry">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://rawaak.in">
+
+    <div class="form-field">
+      <label>Your Name</label>
+      <input type="text" name="name" placeholder="Full name" required>
+    </div>
+    <div class="form-field">
+      <label>Email Address</label>
+      <input type="email" name="email" placeholder="your@email.com" required>
+    </div>
+    <div class="form-field">
+      <label>I am interested in</label>
+      <select name="interest">
+        <option value="">Select an option</option>
+        <option>Buying a specific piece</option>
+        <option>Consigning a piece I own</option>
+        <option>Launch notification only</option>
+        <option>Partnership or collaboration</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>Phone (optional)</label>
+      <input type="tel" name="phone" placeholder="+91 98765 43210">
+    </div>
+    <div class="form-field full">
+      <label>Tell us more</label>
+      <textarea name="message" placeholder="A watch from 1962. A bag that crossed three continents. Whatever it is, we're listening."></textarea>
+    </div>
+
+    <div class="full contact-actions">
+      <button type="submit" class="form-submit">Send Enquiry</button>
+      <a href="https://wa.me/919620609078?text=Hello%20RAWAAK%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire." class="whatsapp-inline" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </form>
+</section>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/919620609078?text=Hello%20RAWAAK%2C%20I%20came%20across%20your%20website%20and%20would%20like%20to%20enquire." class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="whatsapp-float-tooltip">Chat with RAWAAK</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">RAWAAK</div>
+  <div class="footer-tagline">Some things only grow more beautiful with time.</div>
+  <div class="footer-initials">
+    <div class="f-initial">R</div>
+    <div class="f-initial">W</div>
+    <div class="f-initial">A</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
